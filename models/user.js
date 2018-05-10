@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 
+/**
+ * Define User schema
+ */
 var UserSchema = new mongoose.Schema({
     giv_name: {
         type: String,
@@ -101,3 +104,9 @@ var UserSchema = new mongoose.Schema({
         }
     ]
 });
+
+let User = mongoose.model('User', UserSchema);
+
+module.exports = {
+    User
+};
