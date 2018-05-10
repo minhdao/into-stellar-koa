@@ -14,6 +14,7 @@ const bodyParser = require('koa-bodyparser');
 const Koa = require('koa');
 const convert = require('koa-convert');
 const KoaRouter = require('koa-router');
+const serve = require('koa-static');
 
 let app = new Koa();
 let route = new KoaRouter();
@@ -39,6 +40,8 @@ let requestTime = async (ctx, next) => {
 app.use(requestTime);
 app.use(appLogger);
 app.use(bodyParser());
+// everything in /public will be server as static files
+app.use(serve(__dirname + '/public'));
 
 route.get('/register', async function (ctx) {
     console.log('GET /register');
