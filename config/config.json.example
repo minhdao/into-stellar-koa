@@ -1,0 +1,21 @@
+/* KEEP THIS A SECRET - DO NOT PUSH TO REPO */
+/* CONFIG INFO BELOW */
+{
+    "test":{
+        "PORT": 3344,
+        "MONGODB_URI": "mongodb://localhost:27017/IntoStellarTest",
+        "JWT_SECRET_AUTH": "some-secrets",
+        "JWT_SECRET_ACTV": "some-secrets",
+        "MAILGUN_API_KEY": "some-keys",
+        "MAILGUN_DOMAIN": "some-domains"
+    },
+    "development":{
+        "PORT": 3344,
+        "MONGODB_URI": "mongodb://localhost:27017/IntoStellar",
+        "JWT_SECRET_AUTH": "some-secrets",
+        "JWT_SECRET_ACTV": "some-secrets",
+        "MAILGUN_API_KEY": "some-keys",
+        "MAILGUN_DOMAIN": "some-domains",
+        "STELLAR_ADDRESS": "some-stellar-address"
+    }
+}
