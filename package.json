@@ -15,6 +15,10 @@
     "koa-hbs": "^0.9.0",
     "koa-router": "^7.4.0",
     "koa-views": "^6.1.4",
-    "swig": "^1.4.2"
+    "lodash": "^4.17.10",
+    "mongodb": "^3.0.8",
+    "mongoose": "^5.0.18",
+    "swig": "^1.4.2",
+    "validator": "^10.2.0"
   }
 }
