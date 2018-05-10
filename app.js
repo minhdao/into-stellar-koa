@@ -39,7 +39,7 @@ app.use(appLogger);
 route.get('/register', async function (ctx) {
     console.log('GET /register');
     ctx.response.status = 200;
-    await ctx.render('index.html', {content: 'hello'});
+    await ctx.render('register.html', {content: 'hello'});
 });
 
 route.post('/register', async function (ctx) {
