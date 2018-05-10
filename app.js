@@ -1,6 +1,13 @@
-console.log('KOA app ...');
+/**
+ * App home
+ */
 
-const render = require('./lib/render');
+// Load config
+require('./config/config.js');
+
+const render = require('./lib/render.js');
+const {mongoose} = require('./db/mongoose.js');
+const {ObjectID} = require('mongodb');
 const Koa = require('koa');
 const convert = require('koa-convert');
 const KoaRouter = require('koa-router');
