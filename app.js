@@ -7,7 +7,10 @@ require('./config/config.js');
 
 const render = require('./lib/render.js');
 const {mongoose} = require('./db/mongoose.js');
+const {User} = require('./models/user.js');
 const {ObjectID} = require('mongodb');
+const _ = require('lodash');
+const bodyParser = require('koa-bodyparser');
 const Koa = require('koa');
 const convert = require('koa-convert');
 const KoaRouter = require('koa-router');
@@ -35,6 +38,7 @@ let requestTime = async (ctx, next) => {
 
 app.use(requestTime);
 app.use(appLogger);
+app.use(bodyParser());
 
 route.get('/register', async function (ctx) {
     console.log('GET /register');
@@ -44,6 +48,8 @@ route.get('/register', async function (ctx) {
 
 route.post('/register', async function (ctx) {
     console.log('POST /register');
+    console.log('request body ', ctx.request.body);
+    ctx.response.body = ctx.request.body;
 });
 
 route.post('/activate/:token', async function (ctx) {
