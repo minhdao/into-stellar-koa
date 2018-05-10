@@ -1,0 +1,20 @@
+{
+  "name": "learnkoa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mdao",
+  "license": "ISC",
+  "dependencies": {
+    "handlebars": "^4.0.11",
+    "koa": "^2.5.1",
+    "koa-body": "^2.5.0",
+    "koa-hbs": "^0.9.0",
+    "koa-router": "^7.4.0",
+    "koa-views": "^6.1.4",
+    "swig": "^1.4.2"
+  }
+}
