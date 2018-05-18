@@ -1,7 +1,7 @@
 # into-stellar-koa
 
 ### General info
-This is project is used to explore stellar.org by using koa as the backend framework.
+Little project used to explore stellar.org by using koa as the backend framework.
 Follow links for more info [stellar.org](https://www.stellar.org/) and [koa](https://koajs.com/).
 
 ### Road map (~~crossed~~ means done)
