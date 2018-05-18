@@ -22,7 +22,8 @@ Follow links for more info [stellar.org](https://www.stellar.org/) and [koa](htt
 ### Try it out:
 1. Clone the repo to your machine.
 2. Make sure you have MongoDB installed and running.
-3. Run `npm install`
-4. Access the website through your web brwoser.
+3. Check out `/config` folder for DB settings
+4. Run `npm install`
+5. Access the website through your web browser.
 
-Have fun :)
+### Have fun :)
