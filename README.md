@@ -6,11 +6,11 @@ Follow links for more info stellar.org and koa.
 
 ### Road map (crossed means done)
 1. ~~Setup koa~~
-2. ~~Set up register routes (koa-router)
-3. Setup User Schema for MongoDB with Mongoose
-4. Setup view rendering middleware (koa-views)
-5. Create register page (bootstrap)
-6. Implement frontend validation
+2. ~~Set up register routes (koa-router)~~
+3. ~~Setup User Schema for MongoDB with Mongoose~~
+4. ~~Setup view rendering middleware (koa-views)~~
+5. ~~Create register page (bootstrap)~~
+6. ~~Implement frontend validation~~
 7. Implement backend validation
 8. Save user into DB
 9. User login/logout
