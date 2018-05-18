@@ -70,6 +70,24 @@ let checkEmpty = (inputs) => {
 };
 
 /**
+ * [Collect all required inputs and put them into an array]
+ * @return {[Array]} [required inputs]
+ */
+let concatRequiredInputs = function() {
+    let allRequiredInputs = [];
+    // true if length > 0
+    if (arguments.length) {
+        for (let i = 0; i < arguments.length; i++) {
+            for (let z = 0; z < arguments[i].length; z++) {
+                let requiredInputs = arguments[i];
+                allRequiredInputs.push(requiredInputs[z]);
+            }
+        }
+    }
+    return allRequiredInputs;
+};
+
+/**
  * [insertAfter insert a DOM nodeB after nodeA]
  * @param  {[DOM]} parent [parent node of nodeA and nodeB]
  * @param  {[DOM]} nodeA  [node already exist inside parent]
@@ -123,11 +141,9 @@ let addFeedback = (input, isValid, text) => {
 
 // validate inputs when form submitted
 document.querySelector('#myform').addEventListener('submit', (event) => {
-    // disable default form reload
-    event.preventDefault();
+    let allRequiredInputs = concatRequiredInputs(requiredInputs, emails, phones, passwords);
     // make sure nothing is empty
-    checkEmpty(requiredInputs);
-    checkEmpty(emails);
-    checkEmpty(phones);
-    checkEmpty(passwords);
+    if (checkEmpty(allRequiredInputs)) {
+        event.preventDefault(); // do nothing there is empty required field(s)
+    }
 });
