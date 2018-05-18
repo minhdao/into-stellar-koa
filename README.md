@@ -5,7 +5,7 @@ This is project is used to explore stellar.org by using koa as the backend frame
 Follow links for more info stellar.org and koa.
 
 ### Road map (crossed means done)
-1. ~~Setup koa
+1. ~~Setup koa~~
 2. ~~Set up register routes (koa-router)
 3. Setup User Schema for MongoDB with Mongoose
 4. Setup view rendering middleware (koa-views)
