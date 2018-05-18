@@ -2,7 +2,7 @@
 
 ### General info
 This is project is used to explore stellar.org by using koa as the backend framework.
-Follow links for more info stellar.org and koa.
+Follow links for more info [stellar.org](https://www.stellar.org/) and [koa](https://koajs.com/).
 
 ### Road map (crossed means done)
 1. ~~Setup koa~~
@@ -19,7 +19,7 @@ Follow links for more info stellar.org and koa.
 12. To be added later ...
 
 
-###Test it out:
+### Try it out:
 1. Clone the repo to your machine.
 2. Make sure you have MongoDB installed and running.
 3. Run `npm install`
