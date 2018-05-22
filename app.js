@@ -6,6 +6,7 @@
 require('./config/config.js');
 
 const render = require('./lib/render.js');
+const { requiredInputs, InputValidator } = require('./lib/validate-backend.js');
 const { mongoose } = require('./db/mongoose.js');
 const { User } = require('./models/user.js');
 const { ObjectID } = require('mongodb');
@@ -51,10 +52,16 @@ route.get('/register', async function(ctx) {
 
 route.post('/register', async function(ctx) {
   console.log('POST /register');
-  let requiredInputs = ['fam_name', 'giv_name', 'phone', 'email', 'password'];
   let userInputs = _.pick(ctx.request.body, requiredInputs);
-  console.log(userInputs);
-  let user = new User(userInputs);
+  console.log(InputValidator);
+  InputValidator.validate(userInputs).then((userInputs) => {
+    // do something if inputs are good
+    console.log(userInputs);
+  }).catch((error) => {
+    console.log(error);
+  });
+  // console.log(userInputs);
+  // let user = new User(userInputs);
   ctx.response.body = ctx.request.body;
 });
 
