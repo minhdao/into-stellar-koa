@@ -8,9 +8,9 @@ console.log('validate-functions.js loaded ...');
  * @return {[Object]}          [ValidationResult]
  */
 let ValidationResult = function(isValid, text, color) {
-    this.isValid = isValid;
-    this.text = text;
-    this.color = color;
+  this.isValid = isValid;
+  this.text = text;
+  this.color = color;
 };
 
 /**
@@ -19,7 +19,7 @@ let ValidationResult = function(isValid, text, color) {
  * @return {[type]}         [no return]
  */
 let prepareInput = (input) => {
-    return input.trim();
+  return input.trim();
 };
 
 /**
@@ -28,11 +28,11 @@ let prepareInput = (input) => {
  * @return {Promise}       [true if '' value, false otherwise]
  */
 let emptyInput = (input) => {
-    if (input === '') {
-        return new ValidationResult(false, 'Such empty :(', 'red');
-    } else {
-        return new ValidationResult(true, 'Looks good :)', 'green');
-    }
+  if (input === '') {
+    return new ValidationResult(false, 'Such empty :(', 'red');
+  } else {
+    return new ValidationResult(true, 'Looks good :)', 'green');
+  }
 };
 
 /**
@@ -41,15 +41,15 @@ let emptyInput = (input) => {
  * @return {[boolean]}       [true if passes regex, false otherwise]
  */
 let validEmail = (email) => {
-    console.log('valid email called ... ');
-    let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!emptyInput(email).isValid) {
-        return new ValidationResult(false, 'Such empty :(', 'red');
-    }
-    if (!regex.test(email)) {
-        return new ValidationResult(false, 'Such invalid :(', 'red');
-    }
-    return new ValidationResult(true, 'Looks good :)', 'green');
+  console.log('valid email called ... ');
+  let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (!emptyInput(email).isValid) {
+    return new ValidationResult(false, 'Such empty :(', 'red');
+  }
+  if (!regex.test(email)) {
+    return new ValidationResult(false, 'Such invalid :(', 'red');
+  }
+  return new ValidationResult(true, 'Looks good :)', 'green');
 };
 
 /**
@@ -58,14 +58,14 @@ let validEmail = (email) => {
  * @return {[type]}       [description]
  */
 let validPhone = (phone) => {
-    let regex = /[0-9]/;
-    if (!emptyInput(phone).isValid) {
-        return new ValidationResult(false, 'Such empty :(', 'red');
-    }
-    if (!regex.test(phone)) {
-        return new ValidationResult(false, 'Such invalid :(', 'red');
-    }
-    return new ValidationResult(true, 'Looks good :)', 'green');
+  let regex = /[0-9]/;
+  if (!emptyInput(phone).isValid) {
+    return new ValidationResult(false, 'Such empty :(', 'red');
+  }
+  if (!regex.test(phone)) {
+    return new ValidationResult(false, 'Such invalid :(', 'red');
+  }
+  return new ValidationResult(true, 'Looks good :)', 'green');
 };
 
 /**
@@ -75,15 +75,15 @@ let validPhone = (phone) => {
  * @return {[boolean]}          [return true if valid, false otherwise]
  */
 let validPasswords = (password1, password2) => {
-    let regex = /^[a-zA-Z0-9!@#$%^&*]{6,}/;
-    if (!emptyInput(password1).isValid || !emptyInput(password2).isValid) {
-        return new ValidationResult(false, 'Such empty :(', 'red');
-    }
-    if (!regex.test(password1) || !regex.test(password2)) {
-        return new ValidationResult(false, 'Such invalid :(', 'red');
-    }
-    if (!(password1 === password2)) {
-        return new ValidationResult(false, 'Passwords such not alike :(', 'red');
-    }
-    return new ValidationResult(true, 'Looks good :)', 'green');
+  let regex = /^[a-zA-Z0-9!@#$%^&*]{6,}/;
+  if (!emptyInput(password1).isValid || !emptyInput(password2).isValid) {
+    return new ValidationResult(false, 'Such empty :(', 'red');
+  }
+  if (!regex.test(password1) || !regex.test(password2)) {
+    return new ValidationResult(false, 'Such invalid :(', 'red');
+  }
+  if (!(password1 === password2)) {
+    return new ValidationResult(false, 'Passwords such not alike :(', 'red');
+  }
+  return new ValidationResult(true, 'Looks good :)', 'green');
 };
