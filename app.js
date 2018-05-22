@@ -51,7 +51,9 @@ route.get('/register', async function (ctx) {
 
 route.post('/register', async function (ctx) {
     console.log('POST /register');
-    console.log('request body ', ctx.request.body);
+    let requiredInputs = ['fam_name', 'giv_name', 'phone', 'email', 'password'];
+    let userInputs = _.pick(ctx.request.body, requiredInputs);
+    console.log(userInputs);
     ctx.response.body = ctx.request.body;
 });
 
