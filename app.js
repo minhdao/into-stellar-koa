@@ -53,12 +53,13 @@ route.get('/register', async function(ctx) {
 route.post('/register', async function(ctx) {
   console.log('POST /register');
   let userInputs = _.pick(ctx.request.body, requiredInputs);
-  console.log(InputValidator);
-  InputValidator.validate(userInputs).then((userInputs) => {
+  InputValidator.validate(userInputs).then((validInputs) => {
     // do something if inputs are good
-    console.log(userInputs);
+    console.log(validInputs);
   }).catch((error) => {
-    console.log(error);
+    console.log(error.message);
+    console.log(error.invalidInputs);
+    console.log(error.validInputs);
   });
   // console.log(userInputs);
   // let user = new User(userInputs);
