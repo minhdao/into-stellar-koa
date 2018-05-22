@@ -1,6 +1,11 @@
 console.log('validate-functions.js loaded ...');
 
 /**
+ * [requiredInputs define what inputs are required to create an account for user]
+ * @type {Array}
+ */
+const requiredInputs = ['fam_name', 'giv_name', 'phone', 'email', 'password'];
+/**
  * [ValidationResult object constructor]
  * @param  {Boolean}   isValid [true if input is valid, false other wise]
  * @param  {[string]}  text    [text to be display]
