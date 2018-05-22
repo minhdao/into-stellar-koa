@@ -46,7 +46,7 @@ app.use(serve(__dirname + '/public'));
 route.get('/register', async function (ctx) {
     console.log('GET /register');
     ctx.response.status = 200;
-    await ctx.render('register.html', {content: 'hello'});
+    await ctx.render('register.html', {content: ''});
 });
 
 route.post('/register', async function (ctx) {
