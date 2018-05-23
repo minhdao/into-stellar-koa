@@ -54,9 +54,10 @@ route.post('/register', async function(ctx) {
   console.log('POST /register');
   let userInputs = _.pick(ctx.request.body, requiredInputs);
   InputValidator.validate(userInputs).then((validInputs) => {
-    // do something if inputs are good
+    // Save user into DB
     console.log(validInputs);
   }).catch((error) => {
+    // Return failed results back to render the view
     console.log(error.message);
     console.log(error.invalidInputs);
     console.log(error.validInputs);

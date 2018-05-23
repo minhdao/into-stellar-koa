@@ -4,3 +4,4 @@ config/*.json
 .jshintrc
 .eslintrc
 package-lock.json
+notes.md
