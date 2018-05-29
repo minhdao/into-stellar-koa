@@ -78,3 +78,7 @@ route.post('/activate/:token', async function(ctx) {
 app.use(route.routes());
 
 app.listen(3000);
+
+module.exports = {
+  app
+};
