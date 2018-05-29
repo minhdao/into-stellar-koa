@@ -112,6 +112,14 @@ UserSchema.statics.findByEmail = function(email) {
   });
 };
 
+// Model method to find user by socialId
+UserSchema.statics.findBySocialId = function(socialId) {
+  let User = this;
+  return User.findOne({
+    'socialIdNum': socialId,
+  });
+};
+
 let User = mongoose.model('User', UserSchema);
 
 module.exports = {
