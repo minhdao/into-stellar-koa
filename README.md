@@ -13,7 +13,7 @@ Follow links for more info [stellar.org](https://www.stellar.org/) and [koa](htt
 6. ~~Implement frontend validation~~
 7. ~~Implement backend validation~~
 8. ~~Save user into DB~~
-9. Check and handle duplicated case while saving into DB
+9. ~~Check and handle duplicated emails case while saving into DB~~
 10. Send out activation link to email and activate user account
 11. Fetch user's stellar wallet data and display it
 12. To be added later ...
