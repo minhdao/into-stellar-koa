@@ -104,6 +104,14 @@ var UserSchema = new mongoose.Schema({
   }]
 });
 
+// Model method to find user by email
+UserSchema.statics.findByEmail = function(email) {
+  let User = this;
+  return User.findOne({
+    'email': email,
+  });
+};
+
 let User = mongoose.model('User', UserSchema);
 
 module.exports = {
