@@ -58,6 +58,7 @@ route.post('/register', async function(ctx) {
     let user = new User(validInputs);
     user.save().then((user) => {
       console.log('User saved to DB ... ');
+      console.log(user);
     }).catch((error) => {
       console.log(error);
     });
@@ -67,7 +68,7 @@ route.post('/register', async function(ctx) {
     console.log(error.invalidInputs);
     console.log(error.validInputs);
   });
-  ctx.response.body = ctx.request.body;
+  ctx.response.body = '';
 });
 
 route.post('/activate/:token', async function(ctx) {
