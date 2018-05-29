@@ -39,6 +39,7 @@ var UserSchema = new mongoose.Schema({
     minLength: 1,
     trim: true,
     unique: true,
+    sparse: true
   },
   bankName: {
     type: String,
