@@ -22,10 +22,6 @@ let route = new KoaRouter();
 
 app.use(render);
 
-app.context.printName = (name) => {
-  console.log(name);
-};
-
 let appLogger = async (ctx, next) => {
   console.log('Log');
   console.log(ctx.header);
