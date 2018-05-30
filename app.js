@@ -35,7 +35,7 @@ let requestTime = async (ctx, next) => {
 };
 
 app.use(requestTime);
-app.use(appLogger);
+// app.use(appLogger);
 app.use(bodyParser());
 // everything in /public will be server as static files
 app.use(serve(__dirname + '/public'));
@@ -48,23 +48,28 @@ route.get('/register', async function(ctx) {
 
 route.post('/register', async function(ctx) {
   console.log('POST /register');
+  let status = 400;
+  let result = {};
   let userInputs = _.pick(ctx.request.body, requiredInputs);
   InputValidator.validate(userInputs).then((validInputs) => {
     // Save user into DB
     let user = new User(validInputs);
+    console.log('should run first');
     user.save().then((user) => {
-      console.log('User saved to DB ... ');
-      console.log(user);
+      status = 200;
+      result = user;
     }).catch((error) => {
-      console.log(error);
+      status = 400;
+      result = error;
     });
   }).catch((error) => {
     // Return failed results back to render the view
-    console.log(error.message);
-    console.log(error.invalidInputs);
-    console.log(error.validInputs);
+    status = 400;
+    result = error;
   });
-  ctx.response.body = '';
+  ctx.response.status = status;
+  ctx.response.body = result;
+  console.log('should run after');
 });
 
 route.post('/activate/:token', async function(ctx) {
