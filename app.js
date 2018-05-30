@@ -51,6 +51,11 @@ route.post('/register', async function(ctx) {
   let status = 400;
   let result = {};
   let userInputs = _.pick(ctx.request.body, requiredInputs);
+
+  // this code has bug
+  // status is always 400 and body is always {}
+  // fix this!
+
   InputValidator.validate(userInputs).then((validInputs) => {
     // Save user into DB
     let user = new User(validInputs);
