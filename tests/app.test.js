@@ -1,9 +1,12 @@
 const expect = require('expect');
 const supertest = require('supertest');
 const app = require('./../app.js').app;
-const { validUserObjects, invalidUserObjects } = require('./seeds/app.seed.js');
+const { validUserObjects, invalidUserObjects, popUsers } = require('./seeds/app.seed.js');
 
 let request = supertest(app);
+
+// wipe out and populate new data inside User db
+beforeEach(popUsers);
 
 describe('app.js GET /register', () => {
   it('should return 200', (done) => {
