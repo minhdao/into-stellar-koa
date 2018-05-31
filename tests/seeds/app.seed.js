@@ -7,7 +7,7 @@ let validUserObjects = {
     mid_name: 'Tien',
     giv_name: 'Minh',
     phone: '0123456789',
-    socialIdNum: '',
+    socialIdNum: '1238348939',
     email: 'test1@gmail.com',
     password: [
       'daotienminh',
@@ -22,7 +22,7 @@ let validUserObjects = {
     mid_name: 'Trung',
     giv_name: 'Truc',
     phone: '0123987654',
-    socialIdNum: '',
+    socialIdNum: '123445677',
     email: 'test2@gmail.com',
     password: [
       'nguyentrungtruc',
@@ -37,7 +37,7 @@ let validUserObjects = {
     mid_name: 'Van',
     giv_name: 'Khoi',
     phone: '0123456789',
-    socialIdNum: '',
+    socialIdNum: '1214343323',
     email: 'test3@gmail.com',
     password: [
       'tranvankhoi',
@@ -149,6 +149,9 @@ let popUsers = (done) => {
     let user_3 = new User(validUserObjects.user_3).save();
     return Promise.all([user_2, user_3]);
   }).then(() => {
+    done();
+  }).catch((error) => {
+    console.log(error);
     done();
   });
 };
