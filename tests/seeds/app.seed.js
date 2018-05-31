@@ -7,7 +7,7 @@ let validUserObjects = {
     mid_name: 'Tien',
     giv_name: 'Minh',
     phone: '0123456789',
-    socialIdNum: '1238348939',
+    socialIdNum: '',
     email: 'test1@gmail.com',
     password: [
       'daotienminh',
