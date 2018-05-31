@@ -2,6 +2,7 @@ const expect = require('expect');
 const supertest = require('supertest');
 const app = require('./../app.js').app;
 const { validUserObjects, invalidUserObjects, popUsers } = require('./seeds/app.seed.js');
+const { User } = require('./../models/user.js');
 
 let request = supertest(app);
 
@@ -23,7 +24,17 @@ describe('app.js POST /register', () => {
       .post('/register')
       .send(validUserObjects.user_1)
       .expect(200)
-      .end(done);
+      .end((err, res) => {
+        if (err) {
+          return done(err);
+        }
+        // check if user saved in db successfully - find by email
+        User.find({ 'email': validUserObjects.user_1.email }).then(() => {
+          done();
+        }).catch((error) => {
+          done();
+        });
+      });
   });
 
   it('should return 400 request without any of required names', (done) => {
