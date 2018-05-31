@@ -48,33 +48,20 @@ route.get('/register', async function(ctx) {
 
 route.post('/register', async function(ctx) {
   console.log('POST /register');
-  let status = 400;
-  let result = {};
   let userInputs = _.pick(ctx.request.body, requiredInputs);
+  try {
+    let result = await InputValidator.validate(userInputs);
+    if (_.isEqual(result, userInputs)) {
+      ctx.response.status = 200;
+      ctx.response.body = {};
+    }
+  } catch (e) {
+    ctx.response.status = 400;
+    ctx.response.body = {};
+    console.log(e);
+  } finally {
 
-  // this code has bug
-  // status is always 400 and body is always {}
-  // fix this!
-
-  InputValidator.validate(userInputs).then((validInputs) => {
-    // Save user into DB
-    let user = new User(validInputs);
-    console.log('should run first');
-    user.save().then((user) => {
-      status = 200;
-      result = user;
-    }).catch((error) => {
-      status = 400;
-      result = error;
-    });
-  }).catch((error) => {
-    // Return failed results back to render the view
-    status = 400;
-    result = error;
-  });
-  ctx.response.status = status;
-  ctx.response.body = result;
-  console.log('should run after');
+  }
 });
 
 route.post('/activate/:token', async function(ctx) {
