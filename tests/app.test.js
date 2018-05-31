@@ -15,7 +15,7 @@ describe('app.js GET /register', () => {
 });
 
 describe('app.js POST /register', () => {
-  it('should be 200 for request with all correct inputs', (done) => {
+  it('should return 200 for request with all correct inputs', (done) => {
     request
       .post('/register')
       .send(validUserObjects.user_1)
@@ -23,13 +23,13 @@ describe('app.js POST /register', () => {
       .end(done);
   });
 
-  // it('should reject 400 request without any of required names', (done) => {
-  //   request
-  //     .post('/register')
-  //     .send(invalidUserObjects.missingRequiredName)
-  //     .expect(400)
-  //     .end(done);
-  // });
+  it('should return 400 request without any of required names', (done) => {
+    request
+      .post('/register')
+      .send(invalidUserObjects.missingRequiredName)
+      .expect(400)
+      .end(done);
+  });
   //
   // it('should reject 400 request without a phone number', (done) => {
   //   request
