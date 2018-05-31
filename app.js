@@ -58,7 +58,6 @@ route.post('/register', async function(ctx) {
   } catch (e) {
     ctx.response.status = 400;
     ctx.response.body = {};
-    console.log(e);
   } finally {
 
   }
