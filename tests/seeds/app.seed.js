@@ -1,16 +1,47 @@
 const { ObjectID } = require('mongodb');
+const { User } = require('./../../models/user.js');
 
 let validUserObjects = {
   user_1: {
-    fam_name: 'minh',
-    mid_name: '',
-    giv_name: 'dao',
+    fam_name: 'Dao',
+    mid_name: 'Tien',
+    giv_name: 'Minh',
     phone: '0123456789',
     socialIdNum: '',
     email: 'test1@gmail.com',
     password: [
       'daotienminh',
       'daotienminh'
+    ],
+    bankAccountNum: '',
+    bankAccountName: '',
+    bankCity: ''
+  },
+  user_2: {
+    fam_name: 'Nguyen',
+    mid_name: 'Trung',
+    giv_name: 'Truc',
+    phone: '0123987654',
+    socialIdNum: '',
+    email: 'test2@gmail.com',
+    password: [
+      'nguyentrungtruc',
+      'nguyentrungtruc'
+    ],
+    bankAccountNum: '',
+    bankAccountName: '',
+    bankCity: ''
+  },
+  user_3: {
+    fam_name: 'Tran',
+    mid_name: 'Van',
+    giv_name: 'Khoi',
+    phone: '0123456789',
+    socialIdNum: '',
+    email: 'test3@gmail.com',
+    password: [
+      'tranvankhoi',
+      'tranvankhoi'
     ],
     bankAccountNum: '',
     bankAccountName: '',
@@ -111,7 +142,19 @@ let invalidUserObjects = {
   }
 };
 
+// populate users
+let popUsers = (done) => {
+  User.remove({}).then(() => {
+    let user_2 = new User(validUserObjects.user_2).save();
+    let user_3 = new User(validUserObjects.user_3).save();
+    return Promise.all([user_2, user_3]);
+  }).then(() => {
+    done();
+  });
+};
+
 module.exports = {
   validUserObjects,
-  invalidUserObjects
+  invalidUserObjects,
+  popUsers
 };
