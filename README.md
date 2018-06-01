@@ -16,7 +16,8 @@ Follow links for more info [stellar.org](https://www.stellar.org/) and [koa](htt
 9. ~~Check and handle duplicated emails case while saving into DB~~
 10. Send out activation link to email and activate user account
 11. Fetch user's stellar wallet data and display it
-12. To be added later ...
+12. Integrate babel and webpack
+13. To be added later ...
 
 
 ### Try it out:
