@@ -37,11 +37,46 @@ describe('app.js POST /register', () => {
       });
   });
 
-  it('should return 400 request without any of required names', (done) => {
+  it('should return 400 and error body for request without any of required names', (done) => {
+    let userInputs = invalidUserObjects.missingRequiredName;
     request
       .post('/register')
-      .send(invalidUserObjects.missingRequiredName)
+      .send(userInputs)
       .expect(400)
+      .expect((res) => {
+        expect(res.body).toEqual({
+          "_validInputs": [{
+              "isValid": true,
+              "message": "Looks good :)",
+              "color": "green",
+              "_inputID": "email",
+              "_inputValue": userInputs.email
+            },
+            {
+              "isValid": true,
+              "message": "Looks good :)",
+              "color": "green",
+              "_inputID": "phone",
+              "_inputValue": userInputs.phone
+            }
+          ],
+          "_inValidInputs": [{
+              "isValid": false,
+              "message": "Such empty :(",
+              "color": "red",
+              "_inputID": "fam_name",
+              "_inputValue": ""
+            },
+            {
+              "isValid": false,
+              "message": "Such empty :(",
+              "color": "red",
+              "_inputID": "giv_name",
+              "_inputValue": ""
+            }
+          ]
+        });
+      })
       .end(done);
   });
   //
