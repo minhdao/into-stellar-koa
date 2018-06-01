@@ -1,7 +1,7 @@
 class ValidationError extends Error {
   constructor(message, validInputs, inValidInputs) {
     super(message);
-    this._validInputs = inValidInputs;
+    this._validInputs = validInputs;
     this._inValidInputs = inValidInputs;
   }
   get validInputs() {
