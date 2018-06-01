@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
 
 /**
  * Define User schema
@@ -75,12 +74,6 @@ var UserSchema = new mongoose.Schema({
     minLength: 1,
     trim: true,
     unique: true,
-    validate: {
-      validator: (value) => {
-        return validator.isEmail(value);
-      },
-      message: '{VALUE} is not an email'
-    }
   },
   password: {
     type: String,
