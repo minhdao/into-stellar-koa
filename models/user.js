@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { DatabaseError } = require('./../errors/DatabaseError.js');
 
 /**
  * Define User schema
@@ -111,6 +112,16 @@ UserSchema.statics.findBySocialId = function(socialId) {
   return User.findOne({
     'socialIdNum': socialId,
   });
+};
+
+// Intance method to save user
+UserSchema.methods.saveUser = async function() {
+  let user = this;
+  try {
+    return await user.save();
+  } catch (error) {
+    throw new DatabaseError('Cannot save user into db', error);
+  }
 };
 
 let User = mongoose.model('User', UserSchema);
