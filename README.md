@@ -17,7 +17,9 @@ Follow links for more info [stellar.org](https://www.stellar.org/) and [koa](htt
 10. Send out activation link to email and activate user account
 11. Fetch user's stellar wallet data and display it
 12. Integrate babel and webpack
-13. To be added later ...
+13. Login and logout
+14. Create stellar wallet
+16. To be added later ...
 
 
 ### Try it out:
