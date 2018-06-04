@@ -9,6 +9,15 @@ let request = supertest(app);
 // wipe out and populate new data inside User db
 beforeEach(popUsers);
 
+describe('app.js GET /login', () => {
+  it('should return 200', (done) => {
+    request
+      .get('/login')
+      .expect(200)
+      .end(done);
+  });
+});
+
 describe('app.js GET /register', () => {
   it('should return 200', (done) => {
     request
