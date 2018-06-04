@@ -1,6 +1,13 @@
 const { ObjectID } = require('mongodb');
 const { User } = require('./../../models/user.js');
 
+let loginObjects = {
+  valid_user_1: {
+    email: 'test2@gmail.com',
+    password: 'nguyentrungtruc'
+  }
+};
+
 let validUserObjects = {
   user_1: {
     fam_name: 'Dao',
@@ -24,10 +31,7 @@ let validUserObjects = {
     phone: '0123987654',
     socialIdNum: '123445677',
     email: 'test2@gmail.com',
-    password: [
-      'nguyentrungtruc',
-      'nguyentrungtruc'
-    ],
+    password: 'nguyentrungtruc',
     bankAccountNum: '',
     bankAccountName: '',
     bankCity: ''
@@ -39,10 +43,7 @@ let validUserObjects = {
     phone: '0123456789',
     socialIdNum: '1214343323',
     email: 'test3@gmail.com',
-    password: [
-      'tranvankhoi',
-      'tranvankhoi'
-    ],
+    password: 'tranvankhoi',
     bankAccountNum: '',
     bankAccountName: '',
     bankCity: ''
@@ -159,5 +160,6 @@ let popUsers = (done) => {
 module.exports = {
   validUserObjects,
   invalidUserObjects,
+  loginObjects,
   popUsers
 };
