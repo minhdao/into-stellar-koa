@@ -57,7 +57,6 @@ route.post('/login', async function(ctx) {
     ctx.response.status = 400;
     ctx.response.body = e.message;
   }
-  console.log(user);
 });
 
 route.get('/register', async function(ctx) {
@@ -70,7 +69,7 @@ route.post('/register', async function(ctx) {
   console.log('POST /register');
   let userInputs = _.pick(ctx.request.body, requiredInputs);
   try {
-    let result = await InputValidator.validate(userInputs);
+    await InputValidator.validate(userInputs);
     let user = new User(userInputs);
     let saveResult = await user.saveUser();
     ctx.response.status = 200;
