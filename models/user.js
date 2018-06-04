@@ -115,6 +115,26 @@ UserSchema.pre('save', function(next) {
   }
 });
 
+// Model method to login user
+UserSchema.statics.login = async function(email, password) {
+  let User = this;
+
+  // check if email exist
+  let user = await User.findOne({ 'email': email });
+  if (!user) {
+    throw new Error(`cannot find user with email ${email}`);
+  }
+
+  // check if password matched
+  let correctPassword = await bcryptjs.compare(password, user.password);
+  if (!correctPassword) {
+    throw new Error(`wrong password`);
+  }
+
+  // return back user if email found and password matched
+  return user;
+};
+
 // Model method to find user by email
 UserSchema.statics.findByEmail = function(email) {
   let User = this;
