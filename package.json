@@ -10,6 +10,7 @@
   "author": "mdao",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "handlebars": "^4.0.11",
     "koa": "^2.5.1",
     "koa-body": "^2.5.0",
