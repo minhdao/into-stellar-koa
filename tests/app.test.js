@@ -1,7 +1,7 @@
 const expect = require('expect');
 const supertest = require('supertest');
 const app = require('./../app.js').app;
-const { validUserObjects, invalidUserObjects, popUsers } = require('./seeds/app.seed.js');
+const { validUserObjects, invalidUserObjects, loginObjects, popUsers } = require('./seeds/app.seed.js');
 const { User } = require('./../models/user.js');
 
 let request = supertest(app);
@@ -18,6 +18,16 @@ describe('app.js GET /login', () => {
   });
 });
 
+describe('app.js POST /login', () => {
+  it('should return 200 if logged in successfully', (done) => {
+    request
+      .post('/login')
+      .send(loginObjects.valid_user_1)
+      .expect(200)
+      .end(done);
+  });
+});
+
 describe('app.js GET /register', () => {
   it('should return 200', (done) => {
     request
@@ -28,7 +38,7 @@ describe('app.js GET /register', () => {
 });
 
 describe('app.js POST /register', () => {
-  it('should return 200 for request with all correct inputs', (done) => {
+  it('should create user in db and return 200 for request if inputs are valid', (done) => {
     request
       .post('/register')
       .send(validUserObjects.user_1)
@@ -39,8 +49,10 @@ describe('app.js POST /register', () => {
         }
         // check if user saved in db successfully - find by email
         User.find({ 'email': validUserObjects.user_1.email }).then(() => {
+          console.log('found user');
           done();
         }).catch((error) => {
+          console.log('cannot find user');
           done();
         });
       });
@@ -67,6 +79,13 @@ describe('app.js POST /register', () => {
               "color": "green",
               "_inputID": "phone",
               "_inputValue": userInputs.phone
+            },
+            {
+              "isValid": true,
+              "message": "Looks good :)",
+              "color": "green",
+              "_inputID": "password",
+              "_inputValue": ""
             }
           ],
           "_inValidInputs": [{

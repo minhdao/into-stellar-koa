@@ -71,12 +71,10 @@ route.post('/register', async function(ctx) {
   let userInputs = _.pick(ctx.request.body, requiredInputs);
   try {
     let result = await InputValidator.validate(userInputs);
-    if (_.isEqual(result, userInputs)) {
-      let user = new User(userInputs);
-      let saveResult = await user.saveUser();
-      ctx.response.status = 200;
-      ctx.response.body = saveResult;
-    }
+    let user = new User(userInputs);
+    let saveResult = await user.saveUser();
+    ctx.response.status = 200;
+    ctx.response.body = saveResult;
   } catch (error) {
     ctx.response.status = 400;
     ctx.response.body = error;
