@@ -104,13 +104,8 @@ UserSchema.pre('save', function(next) {
   var user = this;
   // only hash password when it's first created or modified
   if (user.isModified('password')) {
-    bcryptjs.genSalt(10, (err, salt) => {
-      bcryptjs.hash(user.password, salt, (error, hash) => {
-        user.password = hash;
-        next();
-      });
-    });
-  } else {
+    let hashed = bcryptjs.hashSync(user.password, 10);
+    user.password = hashed;
     next();
   }
 });
@@ -118,7 +113,6 @@ UserSchema.pre('save', function(next) {
 // Model method to login user
 UserSchema.statics.login = async function(email, password) {
   let User = this;
-
   // check if email exist
   let user = await User.findOne({ 'email': email });
   if (!user) {
@@ -126,7 +120,7 @@ UserSchema.statics.login = async function(email, password) {
   }
 
   // check if password matched
-  let correctPassword = await bcryptjs.compare(password, user.password);
+  let correctPassword = bcryptjs.compareSync(password, user.password);
   if (!correctPassword) {
     throw new Error(`wrong password`);
   }
