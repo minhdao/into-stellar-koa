@@ -46,6 +46,20 @@ route.get('/login', async function(ctx) {
   await ctx.render('login.html', { content: '' });
 });
 
+route.post('/login', async function(ctx) {
+  console.log('POST /login');
+  let user = _.pick(ctx.request.body, ['email', 'password']);
+  try {
+    await User.login(user.email, user.password);
+    ctx.response.status = 200;
+    ctx.response.body = user.email;
+  } catch (e) {
+    ctx.response.status = 400;
+    ctx.response.body = e.message;
+  }
+  console.log(user);
+});
+
 route.get('/register', async function(ctx) {
   console.log('GET /register');
   ctx.response.status = 200;
