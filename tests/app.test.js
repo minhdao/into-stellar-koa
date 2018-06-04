@@ -85,7 +85,7 @@ describe('app.js POST /register', () => {
               "message": "Looks good :)",
               "color": "green",
               "_inputID": "password",
-              "_inputValue": ""
+              "_inputValue": userInputs.password[0]
             }
           ],
           "_inValidInputs": [{
