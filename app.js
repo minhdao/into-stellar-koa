@@ -40,6 +40,12 @@ app.use(bodyParser());
 // everything in /public will be server as static files
 app.use(serve(__dirname + '/public'));
 
+route.get('/login', async function(ctx) {
+  console.log('GET /login');
+  ctx.response.status = 200;
+  await ctx.render('login.html', { content: '' });
+});
+
 route.get('/register', async function(ctx) {
   console.log('GET /register');
   ctx.response.status = 200;
