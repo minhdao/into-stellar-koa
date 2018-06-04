@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { DatabaseError } = require('./../errors/DatabaseError.js');
+const bcryptjs = require('bcryptjs');
 
 /**
  * Define User schema
@@ -96,6 +97,22 @@ var UserSchema = new mongoose.Schema({
       required: true
     }
   }]
+});
+
+// middleware to check(if password modified) and hash password before saving to database
+UserSchema.pre('save', function(next) {
+  var user = this;
+  // only hash password when it's first created or modified
+  if (user.isModified('password')) {
+    bcryptjs.genSalt(10, (err, salt) => {
+      bcryptjs.hash(user.password, salt, (error, hash) => {
+        user.password = hash;
+        next();
+      });
+    });
+  } else {
+    next();
+  }
 });
 
 // Model method to find user by email
