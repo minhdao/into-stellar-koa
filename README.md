@@ -27,6 +27,7 @@ Follow links for more info [stellar.org](https://www.stellar.org/) and [koa](htt
 2. Make sure you have MongoDB installed and running.
 3. Check out `/config` folder for DB settings
 4. Run `npm install`
-5. Access the website through your web browser.
+5. Run `npm run serve` to run server
+5. Access the website locally through your web browser.
 
 ### Have fun :)
