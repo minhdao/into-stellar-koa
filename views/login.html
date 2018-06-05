@@ -21,17 +21,17 @@
 
       </div>
       <div class="col-md-4">
-        <form action="/login" method="POST" class="needs-validation">
+        <form action="/login" method="POST" class="needs-validation" id="myform">
           <div class="row form-group">
             <div class="col-md-12">
               <label for="email">Email</label>
-              <input id="email" type="text" name="email" placeholder="someone@email.com" value="" class="form-control">
+              <input id="email" type="text" name="email" placeholder="someone@email.com" value="" class="form-control email">
             </div>
           </div>
           <div class="row form-group">
             <div class="col-md-12">
               <label for="password">Password</label>
-              <input id="password" type="password" name="password" value="" placeholder="" class="form-control">
+              <input id="password" type="password" name="password" value="" placeholder="" class="form-control required">
             </div>
           </div>
           <div class="row form-group">
@@ -52,6 +52,8 @@
       </div>
     </div>
   </div>
+  <script src="scripts/validate-rules.js" charset="utf-8"></script>
+  <script src="scripts/validate-frontend.js" charset="utf-8"></script>
 </body>
 
 </html>
