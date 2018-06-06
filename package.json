@@ -13,6 +13,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "handlebars": "^4.0.11",
+    "jsonwebtoken": "^8.2.2",
     "koa": "^2.5.1",
     "koa-body": "^2.5.0",
     "koa-bodyparser": "^4.2.0",
