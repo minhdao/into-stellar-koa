@@ -58,7 +58,7 @@ route.post('/login', async function(ctx) {
   try {
     await User.login(user.email, user.password);
     ctx.response.status = 200;
-    ctx.response.body = user.email;
+    await ctx.render('home.html', { user: 'Minh' });
   } catch (e) {
     ctx.response.status = 400;
     ctx.response.body = e.message;
@@ -77,7 +77,9 @@ route.post('/register', async function(ctx) {
   try {
     await InputValidator.validate(userInputs);
     let user = new User(userInputs);
+    let authToken = user.genToken('auth');
     let saveResult = await user.saveUser();
+    ctx.set('x-auth', authToken);
     ctx.response.status = 200;
     ctx.response.body = saveResult;
   } catch (error) {
