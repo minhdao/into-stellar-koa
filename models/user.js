@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { DatabaseError } = require('./../errors/DatabaseError.js');
 const bcryptjs = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 /**
  * Define User schema
@@ -143,6 +144,33 @@ UserSchema.statics.findBySocialId = function(socialId) {
   return User.findOne({
     'socialIdNum': socialId,
   });
+};
+
+/**
+ * anonymous function - Generate token for specific user
+ *
+ * @param  {type} type Type of token need to be generated
+ * @return {type}      A Promise with the token created
+ */
+UserSchema.methods.genToken = function(type) {
+  var user = this;
+  var access = '';
+  var raw_sauce = '';
+  if (type === 'auth') {
+    raw_sauce = process.env.JWT_SECRET_AUTH;
+  } else if (type === 'actv') {
+    raw_sauce = process.env.JWT_SECRET_ACTV;
+  }
+
+  if (type === 'auth') {
+    access = 'auth';
+  } else if (type === 'actv') {
+    access = 'actv';
+  }
+
+  var token = jwt.sign({ _id: user._id.toHexString(), access }, raw_sauce).toString();
+  user.tokens = user.tokens.concat([{ access, token }]);
+  return token;
 };
 
 // Intance method to save user
