@@ -173,6 +173,33 @@ UserSchema.methods.genToken = function(type) {
   return token;
 };
 
+// Model method to find user by Token
+UserSchema.statics.findByToken = function(type, token) {
+  var User = this;
+  var decoded;
+  var secret;
+
+  if (type === 'auth') {
+    secret = process.env.JWT_SECRET_AUTH;
+  } else if (type === 'actv') {
+    secret = process.env.JWT_SECRET_ACTV;
+  }
+
+  try {
+    decoded = jwt.verify(token, secret);
+  } catch (e) {
+    return Promise.reject(e);
+  }
+
+  secret = null;
+
+  return User.findOne({
+    '_id': decoded._id,
+    'tokens.token': token,
+    'tokens.access': decoded.access
+  });
+};
+
 // Intance method to save user
 UserSchema.methods.saveUser = async function() {
   let user = this;
