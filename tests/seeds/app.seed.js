@@ -146,8 +146,12 @@ let invalidUserObjects = {
 // populate users
 let popUsers = (done) => {
   User.remove({}).then(() => {
-    let user_2 = new User(validUserObjects.user_2).save();
-    let user_3 = new User(validUserObjects.user_3).save();
+    let user_2 = new User(validUserObjects.user_2);
+    let user_3 = new User(validUserObjects.user_3);
+    user_2.genToken('auth');
+    user_3.genToken('auth');
+    user_2.save();
+    user_3.save();
     return Promise.all([user_2, user_3]);
   }).then(() => {
     done();
