@@ -139,3 +139,18 @@ describe('user.js findByToken()', () => {
     });
   });
 });
+
+describe('user.js getToken()', () => {
+  it('should return token for a user', (done) => {
+    User.findOne({ 'email': validUserObjects.user_2.email }).then((user) => {
+      user.getToken('auth').then((token) => {
+        expect(token).toEqual(user.tokens[0].token);
+        done();
+      }).catch((error) => {
+        done(error);
+      });
+    }).catch((error) => {
+      done(error);
+    });
+  });
+});
