@@ -210,6 +210,18 @@ UserSchema.methods.saveUser = async function() {
   }
 };
 
+UserSchema.methods.getToken = function(type) {
+  let user = this;
+  return new Promise((res, rej) => {
+    user.tokens.forEach((token) => {
+      if (token.access === type) {
+        res(token.token);
+      }
+    });
+    rej('cannot get token');
+  });
+};
+
 let User = mongoose.model('User', UserSchema);
 
 module.exports = {
