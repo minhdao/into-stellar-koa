@@ -1,7 +1,7 @@
 const expect = require('expect');
 const supertest = require('supertest');
 const app = require('./../app.js').app;
-const { validUserObjects, invalidUserObjects, loginObjects, popUsers } = require('./seeds/app.seed.js');
+const { validUserObjects, invalidUserObjects, loginObjects, getUser, getTokenFromUser, popUsers } = require('./seeds/app.seed.js');
 const { User } = require('./../models/user.js');
 
 let request = supertest(app);
@@ -116,49 +116,26 @@ describe('app.js POST /register', () => {
       })
       .end(done);
   });
-  //
-  // it('should reject 400 request without a phone number', (done) => {
-  //   request
-  //     .post('/register')
-  //     .send(invalidUserObjects.missingPhone)
-  //     .expect(400)
-  //     .end(done);
-  // });
-  //
-  // it('should reject 400 request with wrong phone number format', (done) => {
-  //   request
-  //     .post('/register')
-  //     .send(invalidUserObjects.incorrectPhoneFormat)
-  //     .expect(400)
-  //     .end(done);
-  // });
-  //
-  // it('should reject 400 request without email', (done) => {
-  //   request
-  //     .post('/register')
-  //     .send(invalidUserObjects.missingEmail)
-  //     .expect(400)
-  //     .end(done);
-  // });
-  //
-  // it('should reject 400 request for email with wrong format', (done) => {
-  //   request
-  //     .post('/register')
-  //     .send(invalidUserObjects.invalidEmail)
-  //     .expect(400)
-  //     .end(done);
-  // });
+});
 
-  // it('should reject 400 request for email already exist in DB', (done) => {
-  //
-  // });
-  //
-  // it('should reject 400 request without any of passwords', (done) => {
-  //
-  // });
-  //
-  // it('should reject 400 request with passwords not matching', (done) => {
-  //
-  // });
-
+describe('user.js findByToken()', () => {
+  it('should return user object if provided correct auth token', (done) => {
+    User.findOne({ 'email': validUserObjects.user_2.email }).then((user) => {
+      getTokenFromUser('auth', user).then((token) => {
+        User.findByToken('auth', token).then((result) => {
+          expect(result._id).toEqual(user._id);
+          done();
+        }, (error) => {
+          console.log(error);
+          done();
+        });
+      }, (error) => {
+        console.log(error);
+        done();
+      });
+    }, (error) => {
+      console.log(error);
+      done();
+    });
+  });
 });

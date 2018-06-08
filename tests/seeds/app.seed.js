@@ -161,9 +161,37 @@ let popUsers = (done) => {
   });
 };
 
+let getUser = (email) => {
+  return new Promise((resolve, reject) => {
+    User.findOne({ 'email': email }).then((result) => {
+      if (result) {
+        resolve(result);
+      } else {
+        reject(`cannot find user with ${email}`);
+      }
+    });
+  });
+};
+
+let getTokenFromUser = (type, user) => {
+  return new Promise((resolve, reject) => {
+    if (user instanceof User) {
+      user.tokens.forEach((token) => {
+        if (token.access === type) {
+          resolve(token.token);
+        }
+      });
+      reject('Cannot find matching type');
+    }
+    reject('Type is not User');
+  });
+};
+
 module.exports = {
   validUserObjects,
   invalidUserObjects,
   loginObjects,
+  getUser,
+  getTokenFromUser,
   popUsers
 };
