@@ -60,11 +60,16 @@ route.post('/login', async function(ctx) {
     ctx.response.status = 200;
     let token = result.getToken('auth');
     ctx.set('x-auth', token);
-    // await ctx.render('home.html', { user: 'Minh' });
+    ctx.redirect('/home');
   } catch (e) {
     ctx.response.status = 400;
     ctx.response.body = e.message;
   }
+});
+
+route.get('/home', async function(ctx) {
+  console.log('GET /home');
+  await ctx.render('home.html', { user: 'Minh' });
 });
 
 route.get('/register', async function(ctx) {
