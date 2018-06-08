@@ -56,9 +56,11 @@ route.post('/login', async function(ctx) {
   console.log('POST /login');
   let user = _.pick(ctx.request.body, ['email', 'password']);
   try {
-    await User.login(user.email, user.password);
+    let result = await User.login(user.email, user.password);
     ctx.response.status = 200;
-    await ctx.render('home.html', { user: 'Minh' });
+    let token = result.getToken('auth');
+    ctx.set('x-auth', token);
+    // await ctx.render('home.html', { user: 'Minh' });
   } catch (e) {
     ctx.response.status = 400;
     ctx.response.body = e.message;
